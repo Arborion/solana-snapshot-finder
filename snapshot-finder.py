@@ -316,11 +316,11 @@ def download(url: str):
     try:
         # dirty trick with wget. Details here - https://github.com/c29r3/solana-snapshot-finder/issues/11
         if MAX_DOWNLOAD_SPEED_MB is not None:
-            process = subprocess.run(['/usr/bin/wget', f'--limit-rate={MAX_DOWNLOAD_SPEED_MB}M', '--trust-server-names', url, f'-O{temp_fname}'], 
+            process = subprocess.run(['/usr/bin/wget', '--progress=dot:giga', f'--limit-rate={MAX_DOWNLOAD_SPEED_MB}M', '--trust-server-names', url, f'-O{temp_fname}'], 
               stdout=subprocess.PIPE,
               universal_newlines=True)
         else:
-            process = subprocess.run(['/usr/bin/wget', '--trust-server-names', url, f'-O{temp_fname}'], 
+            process = subprocess.run(['/usr/bin/wget', '--progress=dot:giga', '--trust-server-names', url, f'-O{temp_fname}'], 
               stdout=subprocess.PIPE,
               universal_newlines=True)
 
